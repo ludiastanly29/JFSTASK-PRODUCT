@@ -1,0 +1,105 @@
+<!DOCTYPE html> 
+<html xmlns:th="http://www.thymeleaf.org"> 
+
+<head> 
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"> 
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"> 
+	<link rel="shortcut icon" href="https://cdn-icons-png.flaticon.com/512/470/470199.png"> 
+	<meta charset="UTF-8"> 
+	<title>Product System</title> 
+</head> 
+
+<style> 
+	body { 
+		overflow-x: hidden; 
+		scroll-behavior: smooth; 
+	} 
+
+	nav { 
+		background-color: navy !important; 
+
+	} 
+
+	.navbar-brand { 
+		color: whitesmoke !important; 
+		font-size: 30px !important; 
+		font-weight: bold; 
+	} 
+
+	.card { 
+		box-shadow: rgba(14, 30, 37, 0.12) 1px 2px 2px 0px, rgba(14, 30, 37, 0.32) 1px 2px 2px 0px; 
+	} 
+
+	.card-body { 
+		text-align: center; 
+	} 
+
+	.table-responsive { 
+		box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 2px 6px 2px; 
+	} 
+
+	th { 
+		text-align: center; 
+		font-size: 18px !important; 
+	} 
+
+	td { 
+		text-align: center; 
+		font-size: 15px; 
+		font-weight: 500; 
+	} 
+
+	label { 
+		font-weight: 500; 
+	} 
+</style> 
+
+<body> 
+
+	<nav class="navbar navbar-expand-sm navbar-light mb-5"> 
+		<div class="container"> 
+			<a class="navbar-brand text-bold" href="#"><i class="fa fa-align-center"
+					aria-hidden="true">PCS</i></a> 
+		</div> 
+	</nav> 
+
+	<main> 
+		<div class="container p-4"> 
+			<div class="items_table mt-2 mb-4"> 
+				<div class="table-responsive p-2"> 
+					<h4 class="text-center p-2  p-1 mt-2" 
+						style="font-family:'Times New Roman', Times, serif; font-weight: bold;">Product Catalog 
+						System</h4> 
+					<form class="p-2" th:action="@{/updateProductById/{id}(id=${product.id})}" th:object="${product}" method="post"> 
+						<!-- Check if errorMessage is present in the model and display it -->
+						<div th:if="${errorMessage}" class="alert alert-danger" role="alert"> 
+							<p th:text="${errorMessage}"></p> 
+						</div> 
+			                <div class="row p-2">
+			                    <label class="p-1"  for="name">Name</label>
+			                    <input type="text" class="form-control" id="name" th:field="*{productName}" placeholder="Name"/>
+			                </div>
+			                <div class="row p-2">
+			                    <label class="p-1" >Category</label>
+			                        <input type="text" class="form-control" id="name" th:field="*{category}" placeholder="Category"/>
+			                </div>
+			                <div class="row p-2">
+			                    <label class="p-1"  for="price">Price</label>
+			                    <input type="number" class="form-control" min="1" id="price" th:field="*{price}" placeholder="Price"/>
+			                </div>
+			                <button type="submit" class="btn btn-primary" value="Save">Update</button>
+			                <a class="btn btn-danger" href="/">Cancel</a>
+
+							<a href="/displayAll" class="btn btn-dark mt-2 mb-2" style="text-decoration: none; color: white;"> 
+								<i class="fa fa-arrow"></i> Back to List
+							</a> 
+					</form> 
+				</div> 
+			</div> 
+		</div> 
+	</main> 
+	<!-- bootstrap js -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script> 
+</body> 
+
+</html>
